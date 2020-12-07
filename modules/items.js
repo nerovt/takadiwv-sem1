@@ -43,6 +43,16 @@ VALUES("${item}", "${image}", "${status}", "${seller}", "${phoneNumber}")`
 		return true
 	}
 
+	/**
+	 * retrieve values from database
+	 * @returns {Array} returns an array of objects (where the objects hold each row's data)
+	 */
+	async getDetails() {
+		const sql = 'SELECT * FROM items;'
+		const record = await this.db.all(sql)
+		return record
+	}
+
 	async close() {
 		await this.db.close()
 	}

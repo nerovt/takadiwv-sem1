@@ -79,3 +79,20 @@ test('REGISTER : success with valid details', async test => {
 		items.close()
 	}
 })
+
+test('GET DETAILS : success with valid details', async test => {
+	test.plan(1)
+	const items = await new Items()
+	try {
+		await items.register('fridge', './images/fridge.png', 'sold', 'victor', '1234543')
+		const results = await items.getDetails()
+		const object = {id: 1,item: 'fridge',
+			image: './images/fridge.png',status: 'sold',
+			seller: 'victor', phoneNumber: '1234543'}
+		test.deepEqual(results[0], object)
+	} catch(err) {
+		test.fail('error thrown')
+	} finally {
+		items.close()
+	}
+})
