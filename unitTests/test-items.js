@@ -66,3 +66,16 @@ test('REGISTER : error if blank phoneNumber', async test => {
 		items.close()
 	}
 })
+
+test('REGISTER : success with valid details', async test => {
+	test.plan(1)
+	const items = await new Items()
+	try {
+		const result = await items.register('fridge', './images/fridge.png', 'sold', 'victor', '1234543')
+		test.is(result, true)
+	} catch(err) {
+		test.fail('error thrown')
+	} finally {
+		items.close()
+	}
+})
