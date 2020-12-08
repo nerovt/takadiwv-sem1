@@ -2,11 +2,13 @@
 body {
 		font-family: Arial, Helvetica, sans-serif;
 		margin: 0px;
+        color: black;
 	}
 .container {
 	display: flex;
 	flex-wrap: nowrap;
 }
+
 
 
 /* formats the red message boxes */
@@ -18,7 +20,7 @@ aside {
 .msg {
 	border: 1px solid red;
 	font-weight: bold;
-	background-color: white;
+	background-color: black;
 	color: red;
 	padding: 1em;
 	margin: 2em;
@@ -43,7 +45,7 @@ h1 {
 	float: left;
 	font-size: 3vw;
 	margin-left: 6vw;
-    font-family: fantasy;
+    font-family: Major Mono Display;
 	font-size: 3em;
 	width: 400px;
 
@@ -87,7 +89,7 @@ main {
 	margin-top: 2em;
 	padding: 2em;
 	box-sizing: border-box;
-	background-color: lightgray;
+	background-color: lightblue;
 }
 
 article {
@@ -302,13 +304,13 @@ button#add {
 }
 
 button#add:hover {
-	background-color: white;
+	background-color: black;
 	color: grey;
 }
 
 img {
-	width: 200px;
-	height: 200px;
+	width: 180px;
+	height: 180px;
 	margin: 10px;
 	transition: all 1s;
 }

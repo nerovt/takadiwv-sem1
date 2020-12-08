@@ -1,7 +1,7 @@
 
 import Router from 'koa-router'
 
-const router = new Router({ prefix: '/secure' })
+const router = new Router({ prefix: '/auc' })
 
 async function checkAuth(ctx, next) {
 	console.log('secure router middleware')
@@ -14,7 +14,7 @@ router.use(checkAuth)
 
 router.get('/', async ctx => {
 	try {
-		await ctx.render('secure', ctx.hbs)
+		await ctx.render('auc', ctx.hbs)
 	} catch(err) {
 		ctx.hbs.error = err.message
 		await ctx.render('error', ctx.hbs)
