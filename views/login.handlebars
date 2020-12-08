@@ -7,7 +7,7 @@
 		<title>Log In</title>
 		<meta name="description" content="form to add new books">
 		<meta name="author" content="Mark Tyers">
-		<link href="{{host}}/style.css" type="text/css" rel="stylesheet" />
+		<link href="{{host}}/stylelogin.css" type="text/css" rel="stylesheet" />
 		<script type="module" src="{{host}}/main.js"></script>
 	</head>
 	<body>
@@ -24,11 +24,11 @@
 		<form action="/login" method="post">
 			<p>
 				<label for="user">Username</label><br />
-				<input type="text" name="user" placeholder="your username" value="{{body.user}}" autofocus>
+				<input type="text" name="user" placeholder="Enter your username" value="{{body.user}}" autofocus>
 			</p>
 			<p>
 				<label for="pass">Password</label><br />
-				<input type="password" name="pass" placeholder="your password" value="{{body.pass}}">
+				<input type="password" name="pass" placeholder="Enter your password" value="{{body.pass}}">
 			</p>
 			<input type="hidden" name="referrer" value="{{referrer}}">
 			<p><input type="submit" value="Log in"></p>

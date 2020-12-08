@@ -1,13 +1,7 @@
-
 body {
 		font-family: Arial, Helvetica, sans-serif;
-		margin: 0px;
+		margin: 0;
 	}
-.container {
-	display: flex;
-	flex-wrap: nowrap;
-}
-
 
 /* formats the red message boxes */
 aside {
@@ -27,7 +21,7 @@ aside {
 }
 
 header {
-	background-color: lightblue;
+	background-color: #ccc;
 	border-bottom: 5px solid lightblue;
 	height: 8vw;
 }
@@ -207,7 +201,7 @@ input:invalid, textarea:invalid {
 	border-color: red;
 }
 input:valid, textarea:valid {
-	border-color: black;
+	border-color: darkgreen;
 }
 
 
@@ -304,15 +298,4 @@ button#add {
 button#add:hover {
 	background-color: white;
 	color: grey;
-}
-
-img {
-	width: 200px;
-	height: 200px;
-	margin: 10px;
-	transition: all 1s;
-}
-
-img:hover {
-	transform: scale(1.1);
 }
