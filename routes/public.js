@@ -8,14 +8,17 @@ import Items from '../modules/items.js'
 const dbName = 'website.db'
 
 function modifyResults(results, ctx) {
-    let items = []
-    if(ctx.hbs.session.authorised === null) items = results
-    else {
-        for(let i of results) {
-            if(i.seller !== ctx.hbs.session.username) items.push(i)
-        }
-    }
-    return items
+	let items = []
+	try {
+		for(const i of results) {
+			if(String(i.seller) !== String(ctx.session.username)) {
+				items.push(i)
+			}
+		}
+	} catch(err) {
+		items = results
+	}
+	return items
 }
 
 /**
@@ -25,18 +28,19 @@ function modifyResults(results, ctx) {
  * @route {GET} /
  */
 router.get('/', async ctx => {
-    const account = await new Accounts(dbName)
-    const items = await new Accounts(dbName)
+	const account = await new Accounts(dbName)
+	const items = await new Items(dbName)
 	try {
-        let results = await items.getDetails()
-        results = modifyResults(results, ctx) //call function to modify 
-        ctx.hbs.record = [] ; ctx.hbs.record = results
+		let results = await items.getDetails()
+		results = modifyResults(results, ctx) //call function to modify
+		ctx.hbs.record = [] ; ctx.hbs.record = results
 		await ctx.render('index', ctx.hbs)
 	} catch(err) {
+		console.log(err.message)
 		await ctx.render('error', ctx.hbs)
 	} finally {
-        account.close() ; items.close()
-    }
+		account.close() ; items.close()
+	}
 })
 
 
@@ -83,7 +87,7 @@ router.post('/login', async ctx => {
 		const body = ctx.request.body
 		await account.login(body.user, body.pass)
 		ctx.session.authorised = true
-        ctx.session.username = body.user
+		ctx.session.username = body.user
 		const referrer = body.referrer || '/auc'
 		return ctx.redirect(`${referrer}?msg=you are now logged in...`)
 	} catch(err) {
@@ -97,7 +101,7 @@ router.post('/login', async ctx => {
 
 router.get('/logout', async ctx => {
 	ctx.session.authorised = null
-    ctx.session.username = null
+	ctx.session.username = null
 	ctx.redirect('/?msg=you are now logged out')
 })
 
