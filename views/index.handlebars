@@ -38,7 +38,7 @@
             
             <tr><th>Item name</th><th>Image</th><th>Status</th><th>Seller details</th></tr>
             {{#each record}}
-                <tr><td>{{this.item}}</td><td><img src="https://i.ibb.co/HVLLppD/fridge.jpg" border="0" width="300" height="300" alt="{{this.item}}"></td><td>{{this.status}}</td><td>{{this.seller}}, {{this.phoneNumber}}</td></tr>
+                <tr><td>{{this.item}}</td><td><img src="{{host}}{{this.image}}" border="0" width="300" height="300" alt="{{this.item}}"></td><td>{{this.status}}</td><td>{{this.seller}}, {{this.phoneNumber}}</td></tr>
             {{/each}}
             
         </table>
