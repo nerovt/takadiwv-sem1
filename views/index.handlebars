@@ -34,14 +34,18 @@
 			</aside>
 		{{/if}}
 	<main>
+        {{#if record.status}}
         <table>
             
             <tr><th>Item name</th><th>Image</th><th>Status</th><th>Seller details</th></tr>
-            {{#each record}}
+            {{#each record.data}}
                 <tr><td>{{this.item}}</td><td><img src="{{host}}{{this.image}}" border="0" width="300" height="300" alt="{{this.item}}"></td><td>{{this.status}}</td><td>{{this.seller}}, {{this.phoneNumber}}</td></tr>
             {{/each}}
             
         </table>
+        {{else}}
+            <p>Sorry, no data is availible to display</p>
+        {{/if}}
 		{{#if authorised}}
 			<p><a href="/auc">secure page</a></p>
 		{{/if}}

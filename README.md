@@ -1,3 +1,10 @@
+# Links
+### Heroku
+https://eauction-site.herokuapp.com/
+
+### (Regular) Github link
+https://github.com/nerovt/takadiwv-sem1
+
 # Auction
 
 An auction site where users can upload details of items they no longer want and bid for things they want. All the items for sale need to be stored in a database.

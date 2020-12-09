@@ -38,22 +38,16 @@ router.get('/', async ctx => {
 	const account = await new Accounts(dbName)
 	const items = await new Items(dbName)
 	try {
-		let results = await items.getDetails()
+		let results = await items.getDetails() ; ctx.hbs.record = {}
 		results = modifyResults(results, ctx) //call function to modify
-        ctx.hbs.record = {}
 		if(results.length !== 0) {
-            ctx.hbs.record.status = true
-            ctx.hbs.record.data = [] ; ctx.hbs.record.data = results
-        } else {
-            ctx.hbs.record.status = false
-        }
+			ctx.hbs.record.status = true ; ctx.hbs.record.data = [] ; ctx.hbs.record.data = results
+		} else ctx.hbs.record.status = false
 		await ctx.render('auc', ctx.hbs)
 	} catch(err) {
-		console.log(err.message)
 		await ctx.render('error', ctx.hbs)
-	} finally {
-		account.close() ; items.close()
 	}
+	account.close() ; items.close()
 })
 
 router.post('/', async ctx => {
