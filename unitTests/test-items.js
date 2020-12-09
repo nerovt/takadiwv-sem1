@@ -96,3 +96,31 @@ test('GET DETAILS : success with valid details', async test => {
 		items.close()
 	}
 })
+
+test('DELETE ITEM : error if non-existant record', async test => {
+	test.plan(1)
+	const items = await new Items()
+	try {
+		await items.deleteItem(1)
+        test.fail('error not thrown')
+	} catch(err) {
+		test.is(err.message, 'item record with "1" not found')
+	} finally {
+		items.close()
+	}
+})
+
+test('DELETE ITEM : successful in deleting record', async test => {
+	test.plan(1)
+	const items = await new Items()
+	try {
+		await items.register('fridge', './images/fridge.png', 'sold', 'victor', '1234543')
+		await items.deleteItem(1)
+        const result = await items.getDetails()
+        test.deepEqual(result, [])
+	} catch(err) {
+		test.fail('error thrown')
+	} finally {
+		items.close()
+	}
+})

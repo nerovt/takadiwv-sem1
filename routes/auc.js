@@ -50,4 +50,9 @@ router.get('/', async ctx => {
 	}
 })
 
+router.post('/', async ctx => {
+    const items = await new Items(dbName)
+    const recordID = ctx.request.body.id
+})
+
 export default router
