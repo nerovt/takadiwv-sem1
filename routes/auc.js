@@ -40,7 +40,13 @@ router.get('/', async ctx => {
 	try {
 		let results = await items.getDetails()
 		results = modifyResults(results, ctx) //call function to modify
-		ctx.hbs.record = [] ; ctx.hbs.record = results
+        ctx.hbs.record = {}
+		if(results.length !== 0) {
+            ctx.hbs.record.status = true
+            ctx.hbs.record.data = [] ; ctx.hbs.record.data = results
+        } else {
+            ctx.hbs.record.status = false
+        }
 		await ctx.render('auc', ctx.hbs)
 	} catch(err) {
 		console.log(err.message)
@@ -51,8 +57,9 @@ router.get('/', async ctx => {
 })
 
 router.post('/', async ctx => {
-    const items = await new Items(dbName)
-    const recordID = ctx.request.body.id
+	const items = await new Items(dbName)
+	await items.deleteItem(Number(ctx.request.body.id))
+	ctx.redirect('/auc')
 })
 
 export default router

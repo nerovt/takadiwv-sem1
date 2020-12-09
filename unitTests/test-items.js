@@ -102,7 +102,7 @@ test('DELETE ITEM : error if non-existant record', async test => {
 	const items = await new Items()
 	try {
 		await items.deleteItem(1)
-        test.fail('error not thrown')
+		test.fail('error not thrown')
 	} catch(err) {
 		test.is(err.message, 'item record with "1" not found')
 	} finally {
@@ -116,8 +116,8 @@ test('DELETE ITEM : successful in deleting record', async test => {
 	try {
 		await items.register('fridge', './images/fridge.png', 'sold', 'victor', '1234543')
 		await items.deleteItem(1)
-        const result = await items.getDetails()
-        test.deepEqual(result, [])
+		const result = await items.getDetails()
+		test.deepEqual(result, [])
 	} catch(err) {
 		test.fail('error thrown')
 	} finally {

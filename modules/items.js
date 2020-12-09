@@ -52,18 +52,18 @@ VALUES("${item}", "${image}", "${status}", "${seller}", "${phoneNumber}")`
 		const record = await this.db.all(sql)
 		return record
 	}
-    
+
 	/**
 	 * deletes record from database
 	 * @param {Number} id of record in database
 	 */
-    async deleteItem(id) {
+	async deleteItem(id) {
 		let sql = `SELECT COUNT(id) as records FROM items WHERE id="${id}";`
 		const data = await this.db.get(sql)
 		if(data.records === 0) throw new Error(`item record with "${id}" not found`)
-        sql = `DELETE FROM items WHERE id=${id}`
-        await this.db.run(sql)
-    }
+		sql = `DELETE FROM items WHERE id=${id}`
+		await this.db.run(sql)
+	}
 
 	async close() {
 		await this.db.close()

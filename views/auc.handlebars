@@ -21,22 +21,26 @@
 			</aside>
 		{{/if}}
 		<main>
-        <table>
-            
-            <tr><th>Item name</th><th>Image</th><th>Status</th></tr>
-            {{#each record}}
-            <form>
-                <tr>
-                    <input type="hidden" name="id" value="{{this.id}}">
-                    <td>{{this.item}}</td>
-                    <td><img src="https://i.ibb.co/HVLLppD/fridge.jpg" border="0" width="300" height="300" alt="{{this.item}}"></td>
-                    <td>{{this.status}}</td>
-                    <td><p><input type="submit" value="Delete"></p></td>
-                </tr>
-            </form>
-            {{/each}}
-            
-        </table>
+        {{#if record.status}}
+            <table>
+
+                <tr><th>Item name</th><th>Image</th><th>Status</th></tr>
+                {{#each record.data}}
+                <form action="/auc" enctype="multipart/form-data" method="post">
+                    <tr>
+                        <input type="hidden" name="id" value="{{this.id}}">
+                        <td>{{this.item}}</td>
+                        <td><img src="https://i.ibb.co/HVLLppD/fridge.jpg" border="0" width="300" height="300" alt="{{this.item}}"></td>
+                        <td>{{this.status}}</td>
+                        <td><p><input type="submit" value="Delete"></p></td>
+                    </tr>
+                </form>
+                {{/each}}
+
+            </table>
+        {{else}}
+            <p>You currently no items to sell!</p>
+        {{/if}}
         <p><a href="/">Home page</a></p>
 		</main>
 	</body>
