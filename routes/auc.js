@@ -22,7 +22,7 @@ function modifyResults(results, ctx) {
 			items.push(i)
 		}
 	}
-	for(const i of items) {
+	for(let i of items) {
 		i = {id: i.id, item: i.item, image: i.image, status: i.status}
 	}
 	return items
