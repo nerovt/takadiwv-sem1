@@ -1,0 +1,12 @@
+#!/bin/python
+
+import sys
+
+def main():
+    print("Number of arguemnts: %d" % len(sys.argv))
+    print("Arguemnt List: %s" % str(sys.argv))
+    
+    sys.exit(0)
+    
+ if __name__ == "__main__":
+     main()
